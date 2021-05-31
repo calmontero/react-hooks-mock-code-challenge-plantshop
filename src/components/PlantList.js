@@ -1,7 +1,7 @@
 import React from "react";
 import PlantCard from "./PlantCard";
 
-function PlantList({ plantList }) {
+function PlantList({ plantList, onUpdatePlant, onDeletePlant }) {
   return (
     <ul className="cards">
       {
@@ -9,6 +9,8 @@ function PlantList({ plantList }) {
           <PlantCard 
             key={plantObj.id}
             plant={plantObj}
+            onUpdatePlant={onUpdatePlant}
+            onDeletePlant={onDeletePlant}
           />
         ))
       }

@@ -17,10 +17,22 @@ function PlantPage() {
     const updatedPlants = [...plant, newPlant];
     setPlant(updatedPlants);
   }
-/*
-  function handleSearch(newSearch) {
-    setSearch(newSearch);
-  }*/
+
+  function handleUpdatePlant(updatedPlant) {
+    const updatedPlants = plant.map((plantList) => {
+      if (plantList.id === updatedPlant.id) {
+        return updatedPlant;
+      } else {
+        return plantList;
+      }
+    });
+    setPlant(updatedPlants);
+  }
+
+  function handleDeletePlant(id) {
+    const updatedPlants = plant.filter((plantList) => plantList.id !== id);
+    setPlant(updatedPlants);
+  }
 
   const displayPlants = plant.filter((plantList) => 
     plantList.name.toLowerCase().includes(search.toLocaleLowerCase())
@@ -30,7 +42,10 @@ function PlantPage() {
     <main>
       <NewPlantForm onAddPlant={handleAddPlant} />
       <Search onSearch={setSearch} />
-      <PlantList plantList={displayPlants} />
+      <PlantList plantList={displayPlants} 
+        onUpdatePlant={handleUpdatePlant} 
+        onDeletePlant={handleDeletePlant}
+      />
     </main>
   );
 }
